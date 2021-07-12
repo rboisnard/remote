@@ -1,0 +1,10 @@
+---
+  version: "3.7"
+  services:
+    remote:
+      build: ../backend
+      container_name: remote
+      environment:
+        PORT: 8080
+      expose:
+      - 8080
