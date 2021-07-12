@@ -7,6 +7,7 @@ history = []
 
 @app.route("/", methods=["GET"])
 def home():
+  "the home page returns the last event only"
   if request.method == "GET":
     if len(history):
       return render_template("home.html", event=history[-1]), 200
@@ -18,6 +19,7 @@ def home():
 
 @app.route("/history", methods=["GET"])
 def get_history():
+  "the history page returns all events with the latest first"
   if request.method == "GET":
     return render_template("history.html", history=history), 200
 
@@ -26,6 +28,7 @@ def get_history():
 
 @app.route("/ping", methods=["GET"])
 def ping():
+  "the ping url is used to keep the application alive"
   if request.method == "GET":
     return "", 200
 
@@ -34,9 +37,10 @@ def ping():
 
 @app.route("/<input>", methods=["PUT"])
 def update(input):
+  "the update method url is called from the network to record the last event"
   if request.method == "PUT":
     input = escape(input)
-    if len(history) ==0 or input != history[-1]:
+    if len(history) == 0 or input != history[-1]:
       history.append(input)
     return "", 200
 
