@@ -9,7 +9,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-
-    - name: ping application
+    - name: ping the application
       run: curl https://${{ secrets.HEROKU_APPNAME }}.herokuapp.com/ping
