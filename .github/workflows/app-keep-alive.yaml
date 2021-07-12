@@ -1,0 +1,15 @@
+name: keep alive
+
+on:
+  schedule:
+  - cron:  '*/9 * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: ping application
+      run: curl https://${{ secrets:HEROKU_APPNAME }}.herokuapp.com/ping
